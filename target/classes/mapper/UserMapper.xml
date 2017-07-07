@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wwg.dao.UserDao">
+    <select id="findByUsername" resultType="com.wwg.entity.User">
+        select *
+        from user
+        where username = #{username}
+    </select>
+
+    <update id="update" parameterType="com.wwg.entity.User">
+        update user set username = #{username},
+                        password = #{password},
+                        realname = #{realname},
+                        sex = #{sex},
+                        age = #{age},
+                        phonenumber = #{phonenumber},
+                        email = #{email},
+                        integral = #{integral},
+                        level = #{level},
+                        type = #{type}
+        where id = #{id}
+    </update>
+
+    <select id="findByUserNameLikely" parameterType="java.lang.String" resultType="com.wwg.entity.User">
+        select * from user
+        where username like concat('%',#{username},'%')
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from user where id = #{id}
+    </delete>
+
+    <update id="changePassword" parameterType="map">
+        update user set password = #{password} where id = #{id}
+    </update>
+</mapper>

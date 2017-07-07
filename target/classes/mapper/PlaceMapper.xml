@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wwg.dao.PlaceDao">
+    <insert id="insert" parameterType="com.wwg.entity.Place">
+        insert into place
+        (place, features, introduction, remark)
+        values
+        (#{place}, #{features}, #{introduction}, #{remark})
+    </insert>
+
+    <select id="findAll" resultType="com.wwg.entity.Place">
+        select * from place order by id
+    </select>
+
+    <update id="update" parameterType="com.wwg.entity.Place">
+        update place set place = #{place},
+                         features = #{features},
+                         introduction = #{introduction},
+                         remark = #{remark}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from place where id = #{id}
+    </delete>
+
+    <select id="findByPlace" parameterType="java.lang.String">
+        select * from place where place like concat('%',#{place},'%') order by id
+    </select>
+</mapper>

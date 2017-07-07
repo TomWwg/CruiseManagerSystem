@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wwg.dao.RouteDao">
+    <insert id="insert" parameterType="com.wwg.entity.Route">
+        insert into route
+        (startPlaceId, endPlaceId, time, cruiseName, travelDays, price, currentPrice, discount)
+        values
+        (#{startPlaceId}, #{endPlaceId}, #{time}, #{cruiseName}, #{travelDays}, #{price}, #{currentPrice}, #{discount})
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from route where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.wwg.entity.Route">
+        update route set startPlaceId = #{startPlaceId},
+                         endPlaceId = #{endPlaceId},
+                         time = #{time},
+                         cruiseName = #{cruiseName},
+                         travelDays = #{travelDays},
+                         price = #{price},
+                         currentPrice = #{currentPrice},
+                         discount = #{discount}
+        where id = #{id}
+    </update>
+
+    <select id="findById" parameterType="java.lang.Long" resultType="com.wwg.entity.Route">
+        select * from route where id = #{id}
+    </select>
+    
+    <select id="findByStartPlaceId" parameterType="java.lang.Long" resultType="com.wwg.entity.Route">
+        select * from route where startPlaceId = #{startPlaceId}
+    </select>
+
+    <select id="findByEndPlaceId" parameterType="java.lang.Long" resultType="com.wwg.entity.Route">
+        select * from route where endPlaceId = #{endPlaceId}
+    </select>
+</mapper>

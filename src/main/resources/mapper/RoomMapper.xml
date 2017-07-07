@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wwg.dao.RoomDao">
+    <select id="findAll" resultType="com.wwg.entity.Room">
+        select * from room order by id
+    </select>
+
+    <insert id="insert" parameterType="com.wwg.entity.Room">
+        insert into room
+        (cruiseId, roomNumber, roomLevel, roomPrice, roomStatus)
+        values
+        (#{cruiseId}, #{roomNumber}, #{roomLevel}, #{roomPrice}, #{roomStatus})
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from room where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.wwg.entity.Room">
+        update room set cruiseId = #{cruiseId},
+                        roomNumber = #{roomNumber},
+                        roomLevel = #{roomLevel},
+                        roomPrice = #{roomPrice},
+                        roomStatus = #{roomStatus}
+        where id = #{id}
+    </update>
+
+    <select id="findByCruiseId" parameterType="java.lang.Long" resultType="com.wwg.entity.Room">
+        select * from room where cruiseId = #{cruiseId} order by id
+    </select>
+</mapper>

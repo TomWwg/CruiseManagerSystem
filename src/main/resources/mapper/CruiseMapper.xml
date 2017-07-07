@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wwg.dao.CruiseDao">
+    <select id="findById" resultType="com.wwg.entity.Cruise">
+        select *
+        from cruise
+        where id = #{id}
+    </select>
+
+    <select id="findAll" resultType="com.wwg.entity.Cruise">
+        select * from cruise order by id
+    </select>
+
+    <insert id="insert" parameterType="com.wwg.entity.Cruise">
+        insert into cruise
+        (cruiseName,roomNumber,cruiseLevel,remark)
+        values
+        (#{cruiseName},#{roomNumber},#{cruiseLevel},#{remark})
+    </insert>
+
+    <delete id="deleteById" parameterType="com.wwg.entity.Cruise">
+        delete from cruise where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.wwg.entity.Cruise">
+        update cruise set cruiseName = #{cruiseName},
+                          roomNumber = #{roomNumber},
+                          cruiseLevel = #{cruiseLevel},
+                          remark = #{remark}
+               where id = #{id}
+    </update>
+
+    <select id="findByCruiseName" parameterType="java.lang.String" resultType="com.wwg.entity.Cruise">
+        select * from cruise
+        where cruiseName like concat('%',#{cruiseName},'%')
+        order by id
+    </select>
+</mapper>

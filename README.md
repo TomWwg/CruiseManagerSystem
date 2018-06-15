@@ -1,0 +1,2 @@
+# CruiseManagerSystem
+springboot.mybatis.mysql
